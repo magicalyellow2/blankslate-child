@@ -15,6 +15,7 @@ function splash(param) {
 <?php echo jq_masonry('.container', '.card', get_thumbnail_width()); ?>
 <?php echo jq_on_screen('.card'); ?>
 <?php echo jq_page_top(); ?>
+<?php echo jq_hamburger_menu(); ?>
 </script>
 </body>
 </html>

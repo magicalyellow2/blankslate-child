@@ -93,21 +93,21 @@ function get_footer_menu()
     foreach ($categories as $category) {
         if (isset($category->name)) {
             $category_links[] = sprintf(
-                '<a href="%s">%s</a>',
+                '<a class="ft-item-menu-each" href="%s">%s</a>',
                 esc_url(home_url('/works/' . sanitize_title($category->name))),
                 esc_html(strtoupper($category->name))
             );
         }
     }
-    $foot_cat = 'WORKS：[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']';
+    $foot_cat = '<p class="ft-item-menu-head">WORKS：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']';
     
     //フッターメニューその他
     $add_cat_array = array('resume', 'about');
     $cat_add_array = array();
     foreach($add_cat_array as $val){
-        $cat_add_array[] = '<a href="' . esc_url(home_url('/' . sanitize_title($val))) . '">' . esc_html(strtoupper($val)) . '</a>';
+        $cat_add_array[] = '<a class="ft-item-menu-each" href="' . esc_url(home_url('/' . sanitize_title($val))) . '">' . esc_html(strtoupper($val)) . '</a>';
     }
-    $foot_cat .= ' REST：[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $cat_add_array) . "&nbsp;" . ']';
+    $foot_cat .= '<p class="ft-item-menu-head">REST：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $cat_add_array) . "&nbsp;" . ']';
     
     return $foot_cat;
 }
@@ -283,4 +283,46 @@ function jq_on_screen($class='')
 			
 		here;
 	}
+}
+
+function jq_hamburger_menu()
+{
+    echo <<< here
+    jQuery(document).ready(function($) {
+        // ハンバーガーメニューのHTMLを追加
+        $('body').append(`
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `);
+
+        // ハンバーガーメニューのクリックイベント
+        $('.hamburger-menu').on('click', function() {
+            $(this).toggleClass('active');
+            $('.ft-item-menu').toggleClass('active');
+            
+            // [], |, &nbsp; を削除する処理を追加
+            var menuContent = $('.ft-item-menu').html();
+            // 特殊文字を削除
+            menuContent = menuContent.replace(/\[|\]|\||&nbsp;/g, '');
+            $('.ft-item-menu').html(menuContent);
+        });
+
+        // メニューリンクのクリックイベント
+        $('.ft-item-menu a').on('click', function() {
+            $('.hamburger-menu').removeClass('active');
+            $('.ft-item-menu').removeClass('active');
+        });
+
+        // 画面外クリックでメニューを閉じる
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.hamburger-menu, .ft-item-menu').length) {
+                $('.hamburger-menu').removeClass('active');
+                $('.ft-item-menu').removeClass('active');
+            }
+        });
+    });
+    here;
 }
