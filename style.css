@@ -303,7 +303,8 @@ hr {
   /* 必要なスタイルを追加するか、このセレクタを削除 */
 }
 .entry-content img {
-  max-width: 800px;
+  max-width: 100%;
+  width: auto;
   border-radius: 1rem;
 }
 .entry-content .detail-main-img {
@@ -415,8 +416,8 @@ hr {
   }
 
   .entry-content .detail-list img {
-    width: 320px;
-    height: 180px;
+    max-width: 340px;
+    max-height: 180px;
   }
 
   .splash-title {
@@ -425,6 +426,10 @@ hr {
 
   .splash-subttl {
     font-size: 1.4rem;
+  }
+
+  .task-detail-head {
+    margin-top: 3rem;
   }
 }
 
