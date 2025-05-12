@@ -428,7 +428,7 @@ hr {
     max-width: 345px;
     max-height: 180px;
   }
-
+/*
   .splash-title {
     font-size: 4rem;
   }
@@ -436,7 +436,7 @@ hr {
   .splash-subttl {
     font-size: 1.4rem;
   }
-
+*/
   .task-detail-head {
     margin-top: 3rem;
   }
@@ -522,7 +522,7 @@ hr {
   .task-detail-head {
     margin-top: 3rem;
   }
-
+/*
   .splash-title {
     font-size: 3.2rem;
   }
@@ -534,7 +534,7 @@ hr {
   .splash-author {
     font-size: 1.2rem;
   }
-
+*/
   .page-top {
     bottom: 6vh;
     right: 2vh;
@@ -648,15 +648,15 @@ hr {
   }
 
   .splash-title {
-    font-size: 2.8rem;
+    font-size: 4.2rem;
   }
 
   .splash-subttl {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
   }
 
   .splash-author {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
   .page-top {
