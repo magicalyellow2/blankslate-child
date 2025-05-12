@@ -398,3 +398,208 @@ hr {
   border: solid 1px #aaa;
   padding: 1rem 1.2rem;
 }
+
+/* ========================================
+    MOBILE STYLES
+========================================= */
+
+/* タブレット向けスタイル (820px以上) */
+@media screen and (min-width: 820px) and (max-width: 1023px) {
+  html {
+    font-size: 60%;
+  }
+  
+  .entry-wapper {
+    max-width: 90%;
+    padding: 0 2rem;
+  }
+
+  .entry-content .detail-list img {
+    width: 320px;
+    height: 180px;
+  }
+
+  .splash-title {
+    font-size: 4rem;
+  }
+
+  .splash-subttl {
+    font-size: 1.4rem;
+  }
+}
+
+/* スマートフォン向けスタイル (819px以下) */
+@media screen and (max-width: 819px) {
+  html {
+    font-size: 55%;
+  }
+
+  body {
+    font-size: 1.4rem;
+  }
+
+  header {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .entry-wapper {
+    max-width: 95%;
+    padding: 0 1rem;
+    margin-bottom: 4rem;
+  }
+  .entry-content {
+    padding: 0 1rem;
+  }
+
+  .entry-title {
+    font-size: 2.4rem;
+  }
+
+  .entry-content img {
+    max-width: 100%;
+    margin: 1rem auto;
+    display: block;
+  }
+
+  .entry-content .detail-list {
+    flex-direction: column;
+  }
+
+  .entry-content .detail-list li {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .entry-content .detail-list img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .wp-post-image {
+    max-width: 100%;
+    margin: 1.5rem auto;
+  }
+
+  .task-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .task-incharge {
+    font-size: 1.2rem;
+  }
+
+  .task-assignment {
+    margin-top: 2rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .task-strategy {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .task-detail-head {
+    margin-top: 3rem;
+  }
+
+  .splash-title {
+    font-size: 3.2rem;
+  }
+
+  .splash-subttl {
+    font-size: 1.2rem;
+  }
+
+  .splash-author {
+    font-size: 1.2rem;
+  }
+
+  .page-top {
+    bottom: 6vh;
+    right: 2vh;
+  }
+
+  .page-top a {
+    width: 50px;
+    padding: 18px 0;
+  }
+
+  footer {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .ft-item-name {
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+  .ft-item-menu {
+    width: 100%;
+    padding: 0.8rem;
+    justify-content: center;
+  }
+
+  .tag-links {
+    margin-top: 1.5rem;
+  }
+
+  .tag-links a {
+    padding: 0.4rem 0.5rem 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  /* iPhone 16向けの最適化 */
+  @supports (-webkit-touch-callout: none) {
+    .entry-wapper {
+      padding: 0 1.5rem;
+    }
+
+    .entry-content img {
+      border-radius: 0.8rem;
+    }
+
+    .task-assignment,
+    .task-strategy {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .page-top a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tag-links a {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+}
+
+/* 小型スマートフォン向けスタイル (374px以下) */
+@media screen and (max-width: 374px) {
+  html {
+    font-size: 50%;
+  }
+
+  .entry-title {
+    font-size: 2rem;
+  }
+
+  .splash-title {
+    font-size: 2.8rem;
+  }
+
+  .splash-subttl {
+    font-size: 1.1rem;
+  }
+
+  .page-top a {
+    width: 45px;
+    padding: 15px 0;
+  }
+}
