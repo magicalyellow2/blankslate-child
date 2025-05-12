@@ -1,0 +1,400 @@
+/**
+ * Theme Name:     BlankSlate Child
+ * Author:         BlankSlate
+ * Template:       blankslate
+ * Text Domain:    blankslate-child
+ * Description:    Donations: https://calmestghost.com/donate. BlankSlate is the definitive WordPress boilerplate starter theme. We
+ */
+@charset "UTF-8";
+
+/* ========================================
+    BASE CSS
+========================================= */
+
+html {
+  font-size: 62.5%;
+}
+body {
+  background-color: #333;
+  font-size: 1.4rem;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+header {
+  color: #fff;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+}
+header a:link,
+header a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+header a:hover {
+  text-decoration: underline;
+}
+.head_arrow {
+  position: relative;
+  color: #ffffff;
+  padding: 0.5rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+.head_arrow:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -.6rem;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  margin: 0 auto;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+  border-width: 5px 5px 0 5px;
+}
+main {
+  flex: 1;
+  padding-bottom: 10rem;
+}
+footer {
+  background-color: #111;
+  align-content: flex-start;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  opacity: .9;
+  position: fixed;
+  width: 100vw;
+}
+.ft-item-name {
+  background-color: #fff;
+  color: #000;
+  letter-spacing: .1rem;
+  font-size: 1.8rem;
+  font-weight: 900;
+  padding: 1rem 1rem 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ft-item-name a:link,
+.ft-item-name a:visited {
+  color: #000;
+  text-decoration: none;
+}
+.ft-item-menu {
+  flex-grow: 1;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  padding: 1rem 5rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.ft-item-menu a:link,
+.ft-item-menu a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.ft-item-menu a:hover {
+  text-decoration: underline;
+}
+hr {
+  height: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ---------
+  PAGE-TOP
+--------- */
+
+.page-top {
+  position: fixed;
+  bottom: 8vh;
+  right: 3vh;
+  font-size: 1.4rem;
+  line-height: 1;
+  z-index: 99;
+}
+.page-top a {
+  background: #fff;
+  text-decoration: none;
+  color: #000;
+  width: 60px;
+  padding: 23px 0px;
+  text-align: center;
+  display: block;
+  border-radius: 90px;
+  opacity: 0.9;
+  transition: all .3s ease;
+  letter-spacing: .1rem;
+}
+.page-top a:hover {
+  text-decoration: none;
+  opacity: .5;
+}
+
+/* ---------
+  TAGS
+--------- */
+.tag-links {
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  font-weight: bold;
+}
+.tag-links a {
+  position: relative;
+  display: inline-block;
+  padding: .5rem .65rem .5rem .8rem;
+  margin: 0;
+  background: initial;
+  border: solid 1px #333;
+  border-radius: 1rem;
+}
+.tag-links a:last-child {
+	margin: 0;
+}
+.tag-links a:hover {
+  background-color: #777;
+  border: solid 1px #777;
+  text-decoration: none !important;
+}
+
+/* ---------
+  NO CONTENTS
+--------- */
+.contents_not_found {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* ========================================
+    INDEX PAGE
+========================================= */
+
+.container {
+  margin: 0 auto;
+}
+.card {
+  margin: 4px;
+  padding: 6px;
+  width: 280px;
+  position: relative;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.img-zoom {
+  overflow: hidden;
+  width: 280px;
+}
+.img-zoom img {
+  display: block;
+  transition-duration: 0.3s;
+}
+.img-zoom img:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+.label {
+  position: absolute;
+  display: inline-block;
+  padding: .5rem;
+  top: 3rem;
+  right: 0.4rem;
+  font-size: .9rem;
+  background-color: #545454;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: .05rem;
+  opacity: 0.9;
+}
+.item {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------
+  SPLASH 
+--------- */
+
+.splash {
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 9999;
+  position: relative;
+}
+.splash-content {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #1a1a1a;
+}
+.splash-footer {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  letter-spacing: .1rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.splash-cover {
+  margin-left: auto;
+  margin-right: auto;
+}
+.splash-title {
+  font-size: 5rem;
+  font-weight: bold;
+  letter-spacing: .2rem;
+  line-height: 0rem;
+}
+.splash-title .year {
+  color: #737373;
+}
+.splash-subttl {
+  font-size: 1.6rem;
+  line-height: 0rem;
+  letter-spacing: .1rem;
+}
+.splash-author {
+  font-size: 1.4rem;
+}
+
+/* ========================================
+    ENTRY POST
+========================================= */
+.entry-wapper {
+  color: #fff;
+  margin: 0 auto 6rem;
+  width: 100%;
+  max-width: 800px;
+}
+.entry-wapper a:link,
+.entry-wapper a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.entry-wapper a:hover {
+  text-decoration: underline;
+}
+.entry-title {
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: .1rem;
+}
+.entry-content {
+  /* 必要なスタイルを追加するか、このセレクタを削除 */
+}
+.entry-content img {
+  max-width: 800px;
+  border-radius: 1rem;
+}
+.entry-content .detail-main-img {
+  margin-bottom: 0;
+}
+.entry-content .detail-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.entry-content .detail-list li {
+  margin-bottom: 2rem;
+}
+.entry-content .detail-sub-image {
+  margin-bottom: 2rem;
+}
+.entry-content .detail-list img {
+  width: 380px;
+  height: 214px;
+  object-fit: cover;
+  /*border-radius: 10px;*/
+}
+
+.entry-content .detail-main-img p,
+.entry-content .detail-last-img p,
+.entry-content .detail-list p, 
+.entry-content .the-detail p {
+  margin: .5rem 0;
+}
+.wp-post-image {
+  display: block;
+  margin: 2rem auto;
+  width: 100%;
+  height: auto;
+}
+.task-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.task-info-hr {
+  border-top: 1px solid #aaa;
+}
+.task-incharge {
+  font-size: 1.1rem;
+}
+.task-assignment {
+  background-color: #555;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  margin-top: 4rem;
+}
+.task-strategy {
+  padding: 1rem 1.5rem;
+}
+.dli-caret-down {
+  display: inline-block;
+  vertical-align: middle;
+  color: #555;
+  line-height: 1;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1.5rem;
+  border-top-color: currentColor;
+  border-bottom: 0;
+  position: relative;
+  top: -5px;
+  right: 50%;
+  left: 50%;
+}
+.task-cmmnt {
+  border: solid 1px #fff;
+}
+.task-detail-head {
+  margin-top: 4rem;
+  padding-left: 1rem;
+  border-left: 6px solid #fff;
+  line-height: 1;
+}
+.task-detail-head:last-child {
+	margin-top: 2rem;
+}
+.task-incharge-detail {
+  margin-bottom: 2rem;
+}
+.task-note {
+  border: solid 1px #aaa;
+  padding: 1rem 1.2rem;
+}
