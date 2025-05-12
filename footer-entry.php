@@ -8,6 +8,7 @@
 <script>
 <?php echo jq_on_screen('.entry-wapper'); ?>
 <?php echo jq_page_top(); ?>
+<?php echo jq_hamburger_menu(); ?>
 </script>
 </body>
 </html>

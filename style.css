@@ -793,4 +793,241 @@ hr {
     width: 45px;
     padding: 15px 0;
   }
+
+  .ft-item-menu {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    padding: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+  }
+
+  .ft-item-menu.active {
+    display: block;
+    transform: translateY(0);
+    font-size: 1.4rem;
+  }
+
+  .ft-item-menu a {
+    display: block;
+    padding: 1rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .ft-item-menu a:last-child {
+    border-bottom: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 0vh;
+    right: 0vh;
+    z-index: 9000;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
+
+  .hamburger-menu span {
+    display: block;
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background: #aaa;
+    right: 0vh;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+  }
+
+  .hamburger-menu span:nth-child(1) {
+    top: 13px;
+  }
+
+  .hamburger-menu span:nth-child(2) {
+    top: 21px;
+  }
+
+  .hamburger-menu span:nth-child(3) {
+    top: 29px;
+  }
+
+  .hamburger-menu.active span:nth-child(1) {
+    transform: translateX(-50%) translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: translateX(-50%) translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Sony Xperia向けスタイル (360px以下) */
+@media screen and (max-width: 360px) {
+  html {
+    font-size: 48%;
+  }
+
+  .entry-title {
+    font-size: 1.8rem;
+  }
+
+  .entry-wapper {
+    padding: 0 0.6rem;
+  }
+
+  .entry-content {
+    padding: 0 0.4rem;
+  }
+
+  .entry-content img {
+    margin: 0.6rem 0;
+  }
+
+  .entry-content .detail-list img {
+    max-height: 110px;
+  }
+
+  .task-info {
+    font-size: 1rem;
+  }
+
+  .task-incharge {
+    font-size: 1rem;
+  }
+
+  .task-assignment {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .task-strategy {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .task-detail-head {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .splash-title {
+    font-size: 2.6rem;
+  }
+
+  .splash-subttl {
+    font-size: 1rem;
+  }
+
+  .splash-author {
+    font-size: 1rem;
+  }
+
+  .page-top {
+    bottom: 4vh;
+    right: 1vh;
+  }
+
+  .page-top a {
+    width: 35px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+  }
+
+  .ft-item-name {
+    font-size: 1.8rem;
+    padding: 0.6rem;
+  }
+
+  .tag-links {
+    margin-top: 1rem;
+  }
+
+  .tag-links a {
+    padding: 0.25rem 0.3rem 0.25rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .ft-item-menu {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    padding: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+  }
+
+  .ft-item-menu.active {
+    display: block;
+    transform: translateY(0);
+    font-size: 1.3rem;
+  }
+
+  .ft-item-menu a {
+    display: block;
+    padding: 0.9rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .ft-item-menu a:last-child {
+    border-bottom: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 0vh;
+    right: 0vh;
+    z-index: 9000;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .hamburger-menu span {
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: #aaa;
+    right: 0vh;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+  }
+
+  .hamburger-menu span:nth-child(1) {
+    top: 12px;
+  }
+
+  .hamburger-menu span:nth-child(2) {
+    top: 19px;
+  }
+
+  .hamburger-menu span:nth-child(3) {
+    top: 26px;
+  }
+
+  .hamburger-menu.active span:nth-child(1) {
+    transform: translateX(-50%) translateY(7px) rotate(45deg);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: translateX(-50%) translateY(-7px) rotate(-45deg);
+  }
 }
