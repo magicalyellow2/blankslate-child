@@ -665,14 +665,14 @@ hr {
   }
 
   .page-top a {
-    width: 40px;
-    padding: 15px 0;
-    font-size: 1.2rem;
+    width: 50px;
+    padding: 20px 0;
+    font-size: 1.4rem;
   }
 
   .ft-item-name {
-    font-size: 3rem;
-    padding: 0.7rem;
+    font-size: 2rem;
+    padding: 1.5rem;
     width: auto;
   }
 
