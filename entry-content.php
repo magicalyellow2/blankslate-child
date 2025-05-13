@@ -1,22 +1,25 @@
-<div class="entry-content" itemprop="mainEntityOfPage">
+<div class="entry__content" itemprop="mainEntityOfPage">
 <?php if ( has_post_thumbnail() ) : ?>
 <?php
 $post_id = get_the_ID();
 if(get_field('acf-clinet',$post_id)) {	
 	//課題と戦略の引き出し
-	$assignment = (get_field('acf-assignment',$post_id)) ? '<div class="task-assignment">' . get_field('acf-assignment') . 
-								'</div><span class="dli-caret-down"></span>' : '';
-	$strategy = (get_field('acf-strategy',$post_id)) ? '<div class="task-strategy">' . get_field('acf-strategy') . '</div>' : '';
+	$assignment = (get_field('acf-assignment',$post_id)) ? '<div class="task__assignment">' . get_field('acf-assignment') . 
+								'</div><span class="task__assignment-arrow"></span>' : '';
+	$strategy = (get_field('acf-strategy',$post_id)) ? '<div class="task__strategy">' . get_field('acf-strategy') . '</div>' : '';
 	
 	//業務情報の引き出し
-	$client = (get_field('acf-clinet',$post_id)) ? '<div>' . 'CL: ' . get_field('acf-clinet',$post_id) . ' / ' . get_field('acf-type',$post_id) . '</div>' : '' ;
-	$year = (get_field('acf-year',$post_id)) ? '<div>' . get_field('acf-year',$post_id) . ' / ' . get_field('acf-place',$post_id) . '</div>' : '';
-	$incharge = (get_field('acf-in-charge',$post_id)) ? '<div class="task-incharge">担当：' . get_field('acf-in-charge',$post_id) . '</div>' : '';
-	$task_info = (!empty($incharge)) ? '<div class="task-info">' . $client . $year . '</div><hr class="task-info-hr">' . $incharge : '';
+	$client = (get_field('acf-clinet',$post_id)) ? '<div class="client"><span class="client__label">CL：</span><span class="client__name">' . get_field('acf-clinet',$post_id) . '</span><span class="client__type">/ ' . get_field('acf-type',$post_id) . '</span></div>' : '' ;
+	$year = (get_field('acf-year',$post_id)) ? '<div class="year"><span class="year__value">' . get_field('acf-year',$post_id) . '</span><span class="year__place">' . "&nbsp;/&nbsp;" . get_field('acf-place',$post_id) . '</span></div>' : '';
+	$incharge = (get_field('acf-in-charge',$post_id)) ? '<div class="incharge"><span class="incharge__label">担当：</span><span class="incharge__name">' . get_field('acf-in-charge',$post_id) . '</span></div>' : '';
+	$task_info = (!empty($incharge)) ? '<div class="task__info">' . $client . $year . '</div><hr class="task__info-hr">' . $incharge : '';
 	
 	//担当内容の引き出し
-	$incharge_detail = (get_field('acf-incharge-detail',$post_id)) ? '<h2 class="task-detail-head">担当について</h2><div class="task-incharge-detail">' . get_field('acf-incharge-detail') . '</div>' : '';
+	$incharge_detail = (get_field('acf-incharge-detail',$post_id)) ? '<h2 class="task__detail-head">担当について</h2><div class="task__detail">' . get_field('acf-incharge-detail') . '</div>' : '';
 	
+	//KV画像
+	$img_kv = '<div class="entry__image"><img class="entry__image--kv" src="' . get_the_post_thumbnail_url(get_the_ID(),'full') . '" alt="KV"></div>';
+
 	//メイン画像
 	$img_main = get_entry_image(get_field('acf-img-1',$post_id), get_field('acf-img-1-cmnt',$post_id), 'main');
 	
@@ -40,14 +43,14 @@ if(get_field('acf-clinet',$post_id)) {
 		$i++; $n++;
 	}
 	//サブ画像リストを結合
-	$img_sub = (is_array($img_sub_ar)) ? '<h2 class="task-detail-head">業務内容</h2>' . "\n" . '<ul class="detail-list">' . implode("\n", $img_sub_ar) . "\n" .'</ul>' : '';
+	$img_sub = (is_array($img_sub_ar)) ? '<h2 class="task__detail-head">業務内容</h2>' . "\n" . '<ul class="detail__container">' . implode("\n", $img_sub_ar) . "\n" .'</ul>' : '';
 	
 	//補足
-	$task_note = (get_field('acf-note',$post_id)) ? '<div class="task-note">' . get_field('acf-note') . '</div>' : '';
+	$task_note = (get_field('acf-note',$post_id)) ? '<div class="task__note">' . get_field('acf-note') . '</div>' : '';
 	
 	print $assignment;
 	print $strategy;
-	the_post_thumbnail( 'full', array( 'itemprop' => 'image' ) );
+	print $img_kv;
 	print $task_info;
 	print $incharge_detail;
 	print $img_main;
@@ -57,7 +60,4 @@ if(get_field('acf-clinet',$post_id)) {
 }
 ?>
 <?php endif; ?>
-<!-- meta itemprop="description" content="<?php echo esc_html( wp_strip_all_tags( get_the_excerpt(), true ) ); ?>" / -->
-<?php the_content(); ?>
-<div class="entry-links"><?php wp_link_pages(); ?></div>
 </div>

@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?> <?php blankslate_schema_type(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="robots" content="noindex,nofollow">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 </head>
 <body>
 	<header>
-    	<div class="head_arrow">
-      		SCROLL DOWN 
+    	<div class="header">
+      		<div class="header__arrow">SCROLL DOWN</div>
 		</div>
     </header>

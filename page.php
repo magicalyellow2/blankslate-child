@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?> <?php blankslate_schema_type(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="robots" content="noindex,nofollow">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
@@ -17,24 +17,22 @@
 <body>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<header>
-			<div class="head_arrow">
-				SCROLL DOWN 
-			</div>
-			<h1 class="entry-title" itemprop="name"><?php the_title(); ?></h1>
-		</header>
-		<div class="entry-content" itemprop="mainContentOfPage">
+		<div class="header">
+			<div class="header__arrow"></div>
+			<h1 class="entry__title" itemprop="name"><?php the_title(); ?></h1>
+		</div>
+		<div class="entry__content" itemprop="mainContentOfPage">
 			<?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'full', array( 'itemprop' => 'image' ) ); } ?>
 			<?php the_content(); ?>
-			<div class="entry-links"><?php wp_link_pages(); ?></div>
+			<div class="entry__links"><?php wp_link_pages(); ?></div>
 		</div>
 	</article>
 	<?php if ( comments_open() && !post_password_required() ) { comments_template( '', true ); } ?>
 	<?php endwhile; endif; ?>
-<p class="page-top"><a href="#">TOP</a></p>
+<p class="page-top"><a class="page-top__link" href="#">TOP</a></p>
     <footer class="footer">
-        <div class="ft-item-name"><a href="<?php echo home_url(); ?>">Portfolio.</a></div>
-        <div class="ft-item-menu">
+        <div class="footer__site-name "><a href="<?php echo home_url(); ?>">Portfolio.</a></div>
+        <div class="footer__menu">
 				<?php echo get_footer_menu(); ?>
 			</div>
     </footer>

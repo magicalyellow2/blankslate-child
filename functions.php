@@ -93,21 +93,21 @@ function get_footer_menu()
     foreach ($categories as $category) {
         if (isset($category->name)) {
             $category_links[] = sprintf(
-                '<a class="ft-item-menu-each" href="%s">%s</a>',
+                '<a class="footer__menu-item" href="%s">%s</a>',
                 esc_url(home_url('/works/' . sanitize_title($category->name))),
                 esc_html(strtoupper($category->name))
             );
         }
     }
-    $foot_cat = '<p class="ft-item-menu-head">WORKS：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']';
+    $foot_cat = '<div class="footer__menu-section"><p class="footer__menu-head">WORKS：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']</div>';
     
     //フッターメニューその他
     $add_cat_array = array('resume', 'about');
     $cat_add_array = array();
     foreach($add_cat_array as $val){
-        $cat_add_array[] = '<a class="ft-item-menu-each" href="' . esc_url(home_url('/' . sanitize_title($val))) . '">' . esc_html(strtoupper($val)) . '</a>';
+        $cat_add_array[] = '<a class="footer__menu-item" href="' . esc_url(home_url('/' . sanitize_title($val))) . '">' . esc_html(strtoupper($val)) . '</a>';
     }
-    $foot_cat .= '<p class="ft-item-menu-head">REST：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $cat_add_array) . "&nbsp;" . ']';
+    $foot_cat .= '<div class="footer__menu-section"><p class="footer__menu-head">REST：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $cat_add_array) . "&nbsp;" . ']</div>';
     
     return $foot_cat;
 }
@@ -125,25 +125,32 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
     if(!empty($acf_img_path)){
         $path = esc_url($acf_img_path);
         $cmmnt = wp_kses_post($acf_cmmnt);
-        
-        $img = (!empty($path)) ? '<img src="' . $path . '" alt="' . esc_attr($cmmnt) . '">' : '';
+
+        switch($type){
+            case 'list': $class = ' class="detail__list_image"'; break;
+            case 'main': $class = ' class="entry__image--main"'; break;
+            case 'last': $class = ' class="detail__list_image--last"'; break;
+            default: $class=''; break;
+        }
+
+        $img = (!empty($path)) ? '<img' . $class . ' src="' . $path . '" alt="' . esc_attr($cmmnt) . '">' : '';
         
         switch($type){
             case 'list': 
                 $img = '<a href="' . $path . '" data-lightbox="group" data-title="' . esc_attr($cmmnt) . '">' . $img . '</a>';
-                $cmmnt = (!empty($cmmnt)) ? '<p>' . $cmmnt . '</p>' : '';
-                $img = '<li class="detail-sub-image">' . $cmmnt . $img . '</li>';
+                $cmmnt = (!empty($cmmnt)) ? '<p class="detail__list-cmmnt">' . $cmmnt . '</p>' : '';
+                $img = '<li class="detail__list">' . $cmmnt . $img . '</li>';
                 break;
                 
             case 'main': 
                 $cmmnt = (!empty($cmmnt)) ? '<p>' . $cmmnt . '</p>' : '';
-                $img = '<div class="detail-main-img">' . $img . $cmmnt . '</div>';
+                $img = '<div class="entry__image">' . $img . $cmmnt . '</div>';
                 break;
 				
 			case 'last':
                 $img = '<a href="' . $path . '" data-lightbox="group" data-title="' . esc_attr($cmmnt) . '">' . $img . '</a>';
-                $cmmnt = (!empty($cmmnt)) ? '<p>' . $cmmnt . '</p>' : '';
-                $img = '<div class="detail-last-img">' . $cmmnt . $img . '</div>';
+                $cmmnt = (!empty($cmmnt)) ? '<p class="detail__list-cmmnt">' . $cmmnt . '</p>' : '';
+                $img = '<div class="entry__image">' . $cmmnt . $img . '</div>';
 				break;
                 
             default:
@@ -190,9 +197,9 @@ function get_styled_tags($tags=''){
     }else{
         $result = array();
         foreach($tags as $tag) {
-			if($tag){
-            	$result[] = '<a href="' . esc_url(home_url('/tags/' . sanitize_title($tag->name))) . '" rel="tag">' . esc_html(strtoupper($tag->name)) . '(' . esc_html($tag->count) . ')</a>';
-			}
+            if($tag){
+                $result[] = '<a class="tag__link" href="' . esc_url(home_url('/tags/' . sanitize_title($tag->name))) . '" rel="tag">' . esc_html(strtoupper($tag->name)) . '(' . esc_html($tag->count) . ')</a>';
+            }
         }
         return implode('', $result);
     }
@@ -253,76 +260,181 @@ function jq_masonry($container='', $class='', $thumb='')
 /**
  * onScreenアニメーション機能の初期化
  * 
+ * 要素が画面内に入ったときにフェードイン、画面外に出たときにフェードアウトする
+ * アニメーション効果を適用します。
+ * 
  * @param string $class 対象要素のクラス
+ * @return void
  */
 function jq_on_screen($class='')
 {
-	if(empty($class)){
-		return ;
-	}
-	else{
-		echo <<< here
-		document.addEventListener('DOMContentLoaded', function() {
-			$("${class}").onScreen({
-				doIn: function(){
-					$(this).animate({
-						opacity: 1
-					},800);
-				},
-				doOut: function(){
-					$(this).animate({
-						opacity: 0
-					}, 800);
-				},
-				tolerance: 50,
-				throttle: 50,
-				toggleClass: 'onScreen',
-				lazyAttr: null
-			});
-		});
-			
-		here;
-	}
+    if(empty($class)){
+        return;
+    }
+    else{
+        echo <<< here
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初期状態を設定
+            $("${class}").css('opacity', '0');
+            
+            // onScreenプラグインが利用可能か確認
+            if (typeof $.fn.onScreen === 'undefined') {
+                console.warn('onScreen plugin is not loaded');
+                // フォールバック: 単純なフェードイン
+                $("${class}").animate({ opacity: 1 }, 800);
+                return;
+            }
+            
+            $("${class}").onScreen({
+                doIn: function(){
+                    $(this).animate({
+                        opacity: 1
+                    }, 800);
+                },
+                doOut: function(){
+                    $(this).animate({
+                        opacity: 0
+                    }, 800);
+                },
+                tolerance: 100,  // より広い範囲で検出
+                throttle: 100,   // より少ない頻度でチェック
+                toggleClass: 'onScreen',
+                lazyAttr: null
+            });
+        });
+        here;
+    }
 }
 
+/**
+ * ハンバーガーメニューの初期化と制御
+ * 
+ * 以下の機能を提供します：
+ * - フッターメニューの内容をハンバーガーメニューとして表示
+ * - メニューの開閉アニメーション
+ * - メニュー表示時のスクロール制御
+ * - メニュー外クリック時の自動閉じる機能
+ * 
+ * @return string ハンバーガーメニュー制御用のJavaScriptコード
+ */
 function jq_hamburger_menu()
 {
     echo <<< here
     jQuery(document).ready(function($) {
         // ハンバーガーメニューのHTMLを追加
-        $('body').append(`
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        `);
+        var menuContent = $('.footer__menu').html();
+        // 特殊文字を削除
+        menuContent = menuContent.replace(/\[|\]|\||&nbsp;/g, '');
+        
+        var hamburgerHTML = 
+            '<div class="hamburger">' +
+                '<span class="hamburger__line"></span>' +
+                '<span class="hamburger__line"></span>' +
+                '<span class="hamburger__line"></span>' +
+            '</div>' +
+            '<div class="hamburger-menu">' +
+                '<div class="hamburger-menu__list">' +
+                    menuContent +
+                '</div>' +
+            '</div>';
+        
+        $('body').append(hamburgerHTML);
 
         // ハンバーガーメニューのクリックイベント
-        $('.hamburger-menu').on('click', function() {
-            $(this).toggleClass('active');
-            $('.ft-item-menu').toggleClass('active');
+        $('.hamburger').on('click', function() {
+            $(this).toggleClass('is-active');
+            $('.hamburger-menu').toggleClass('is-active');
             
-            // [], |, &nbsp; を削除する処理を追加
-            var menuContent = $('.ft-item-menu').html();
-            // 特殊文字を削除
-            menuContent = menuContent.replace(/\[|\]|\||&nbsp;/g, '');
-            $('.ft-item-menu').html(menuContent);
+            // メニューが開いているときはスクロールを無効化
+            if ($('.hamburger-menu').hasClass('is-active')) {
+                $('body').css({
+                    'position': 'fixed',
+                    'width': '100%',
+                    'top': -$(window).scrollTop() + 'px'
+                });
+            } else {
+                // メニューが閉じるときはスクロールを有効化
+                var scrollTop = parseInt($('body').css('top'));
+                $('body').css({
+                    'position': '',
+                    'width': '',
+                    'top': ''
+                });
+                $(window).scrollTop(-scrollTop);
+            }
         });
 
         // メニューリンクのクリックイベント
-        $('.ft-item-menu a').on('click', function() {
-            $('.hamburger-menu').removeClass('active');
-            $('.ft-item-menu').removeClass('active');
+        $('.hamburger-menu__link').on('click', function() {
+            $('.hamburger').removeClass('is-active');
+            $('.hamburger-menu').removeClass('is-active');
+            // メニューが閉じるときはスクロールを有効化
+            var scrollTop = parseInt($('body').css('top'));
+            $('body').css({
+                'position': '',
+                'width': '',
+                'top': ''
+            });
+            $(window).scrollTop(-scrollTop);
         });
 
         // 画面外クリックでメニューを閉じる
         $(document).on('click', function(e) {
-            if (!$(e.target).closest('.hamburger-menu, .ft-item-menu').length) {
-                $('.hamburger-menu').removeClass('active');
-                $('.ft-item-menu').removeClass('active');
+            if (!$(e.target).closest('.hamburger, .hamburger-menu').length) {
+                $('.hamburger').removeClass('is-active');
+                $('.hamburger-menu').removeClass('is-active');
+                // メニューが閉じるときはスクロールを有効化
+                var scrollTop = parseInt($('body').css('top'));
+                $('body').css({
+                    'position': '',
+                    'width': '',
+                    'top': ''
+                });
+                $(window).scrollTop(-scrollTop);
             }
         });
     });
+    here;
+}
+
+/**
+ * スプラッシュ画面の制御機能を初期化
+ * 
+ * スプラッシュ画面を指定時間後にフェードアウトさせる機能を提供します。
+ * 
+ * @param int $time フェードアウトまでの待機時間（ミリ秒）
+ * @return string スプラッシュ制御用のJavaScriptコード
+ */
+function jq_splash($time = 3000)
+{
+    echo <<< here
+    function splash(param) {
+        // パラメータの検証
+        if (typeof param !== 'number' || isNaN(param) || param < 0) {
+            console.warn('Invalid parameter for splash function. Expected a positive number.');
+            param = ${time}; // デフォルト値
+        }
+
+        // jQueryの存在確認
+        if (typeof jQuery === 'undefined') {
+            console.error('jQuery is not loaded');
+            return;
+        }
+
+        // スプラッシュ要素の存在確認
+        var \$splash = jQuery('.splash');
+        if (\$splash.length === 0) {
+            console.warn('Splash element not found');
+            return;
+        }
+
+        // フェードアウト処理
+        setTimeout(function() {
+            \$splash.fadeOut(500, function() {
+                // フェードアウト完了後のコールバック
+                \$splash.remove(); // 要素を完全に削除
+            });
+        }, param);
+    }
     here;
 }

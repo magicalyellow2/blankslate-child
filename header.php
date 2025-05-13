@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?> <?php blankslate_schema_type(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="robots" content="noindex,nofollow">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
@@ -16,18 +16,18 @@
 </head>
 <body onload="splash(3000)">
     <div class="splash">
-		<div class="splash-content">
-		  <div class="splash-cover">
-				<p class="splash-title">Portfolio<span class="year"><?php echo date('Y'); ?></span></p>
-				<p class="splash-subttl">singapore&nbsp;&nbsp;vietnam&nbsp;&nbsp;thailand</p>
+		<div class="splash__content">
+		  <div class="splash__cover">
+				<p class="splash__title">Portfolio<span class="splash__title--year"><?php echo date('Y'); ?></span></p>
+				<p class="splash__subtitle">singapore&nbsp;&nbsp;vietnam&nbsp;&nbsp;thailand</p>
 		  </div>
 		</div>
-		<div class="splash-footer">
-			<p class="splash-author">SUSUMU SAKAI / 酒井奨</p>
+		<div class="splash__footer">
+			<p class="splash__author">SUSUMU SAKAI / 酒井奨</p>
 		</div>
 	</div> 
-	<header>
-    	<div class="head_arrow">
+	<header class="header">
+    	<div class="header__arrow">
       		SCROLL DOWN 
 		</div>
     </header>

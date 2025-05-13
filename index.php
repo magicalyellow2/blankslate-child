@@ -10,9 +10,9 @@
 			$thumb_attr =  get_ratiocal($thumb_path,(get_thumbnail_width() - 20));
 			$post_title = get_the_title();
 			$post_array[] = '<div class="card">' . 
-				'<span class="label">' . esc_html($post_title) . '</span>' . 
-				'<a href="' . esc_url($permalink) . '" title="' . esc_attr($post_title) . '" class="img-zoom">' . 
-				'<img class="item" src="' . esc_url($thumb_path) . '"' . $thumb_attr . ' alt="' . esc_attr($post_title) . '">' . 
+				'<span class="card__label">' . esc_html($post_title) . '</span>' . 
+				'<a href="' . esc_url($permalink) . '" title="' . esc_attr($post_title) . '" class="card__link">' . 
+				'<img class="card__image" src="' . esc_url($thumb_path) . '"' . $thumb_attr . ' alt="' . esc_attr($post_title) . '">' . 
 				'</a>' . 
 				'</div>';
 			endwhile;
