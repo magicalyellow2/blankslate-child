@@ -498,10 +498,14 @@ hr {
     MOBILE
 ========================================= */
 
-/* タブレット縦向き (820pxまで) */
-@media screen and (max-width: 820px) {
+/* タブレット縦向き (834pxまで) */
+@media screen and (max-width: 834px) {
   .detail__list_image {
       width: 360px;
+  }
+
+  .splash__footer {
+    bottom: 5rem;
   }
 }
 
@@ -511,7 +515,9 @@ hr {
       width: 350px;
   }
 
-  /* ハンバーガーメニュー処理 */
+  /* ---------
+  HAMBURGER MENU
+  --------- */
   .footer {
     background-color: inherit;
   }
