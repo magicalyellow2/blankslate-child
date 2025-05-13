@@ -97,7 +97,6 @@ hr {
   letter-spacing: .1rem;
   font-size: 1.8rem;
   font-weight: 900;
-  padding: 1rem 1rem 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,6 +108,7 @@ hr {
 }
 .footer__site-name-link {
   width: 100%;
+  padding: 1rem 1rem 1rem 1.5rem;
 }
 .footer__menu {
   flex-grow: 1;
@@ -344,6 +344,8 @@ hr {
 .entry__image {
   max-width: 100%;
   margin: 1rem auto;
+  display: flex;
+  justify-content: center;
 }
 .entry__image--kv,
 .entry__image--main {
@@ -549,6 +551,12 @@ hr {
   }
   .footer__site-name {
     width: 100vw;
+    /* タップ時のハイライトを無効化（iOS） */
+    -webkit-tap-highlight-color: transparent;
+  }
+  .footer__site-name-link {
+    text-align: center;
+    padding: 1.5rem 0;
   }
   .footer__menu {
     display: none;
@@ -630,7 +638,7 @@ hr {
 /* 標準的なスマートフォン (375pxまで) */
 @media screen and (max-width: 375px) {
   .splash__title {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
   .splash__subtitle {
     font-size: 1.2rem;

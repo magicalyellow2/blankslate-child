@@ -314,6 +314,8 @@ function jq_on_screen($class='')
  * - メニューの開閉アニメーション
  * - メニュー表示時のスクロール制御
  * - メニュー外クリック時の自動閉じる機能
+ * - タッチデバイス対応（Android/iOS）
+ * - iOS Safari対応（ダブルタップズーム防止、バウンススクロール制御）
  * 
  * @return string ハンバーガーメニュー制御用のJavaScriptコード
  */
@@ -321,6 +323,23 @@ function jq_hamburger_menu()
 {
     echo <<< here
     jQuery(document).ready(function($) {
+        // iOS Safariのバウンススクロールを防止
+        document.body.addEventListener('touchmove', function(e) {
+            if ($('.hamburger-menu').hasClass('is-active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // ダブルタップズームを防止
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            var now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
         // ハンバーガーメニューのHTMLを追加
         var menuContent = $('.footer__menu').html();
         // 特殊文字を削除
@@ -340,57 +359,120 @@ function jq_hamburger_menu()
         
         $('body').append(hamburgerHTML);
 
-        // ハンバーガーメニューのクリックイベント
-        $('.hamburger').on('click', function() {
-            $(this).toggleClass('is-active');
-            $('.hamburger-menu').toggleClass('is-active');
+        // スクロール位置を保存する変数
+        var scrollPosition = 0;
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        // メニューの開閉を制御する関数
+        function toggleMenu(isOpen) {
+            $('.hamburger').toggleClass('is-active', isOpen);
+            $('.hamburger-menu').toggleClass('is-active', isOpen);
             
-            // メニューが開いているときはスクロールを無効化
-            if ($('.hamburger-menu').hasClass('is-active')) {
-                $('body').css({
-                    'position': 'fixed',
-                    'width': '100%',
-                    'top': -$(window).scrollTop() + 'px'
-                });
+            if (isOpen) {
+                // メニューを開くとき
+                scrollPosition = window.pageYOffset;
+                if (isIOS) {
+                    // iOS Safari用の特別な処理
+                    $('body').css({
+                        'position': 'fixed',
+                        'width': '100%',
+                        'top': -scrollPosition + 'px',
+                        'overflow': 'hidden',
+                        '-webkit-overflow-scrolling': 'touch'
+                    });
+                    // iOS Safariのバウンススクロールを防止
+                    document.body.style.height = '100%';
+                } else {
+                    $('body').css({
+                        'position': 'fixed',
+                        'width': '100%',
+                        'top': -scrollPosition + 'px',
+                        'overflow': 'hidden'
+                    });
+                }
             } else {
-                // メニューが閉じるときはスクロールを有効化
-                var scrollTop = parseInt($('body').css('top'));
-                $('body').css({
-                    'position': '',
-                    'width': '',
-                    'top': ''
-                });
-                $(window).scrollTop(-scrollTop);
+                // メニューを閉じるとき
+                if (isIOS) {
+                    $('body').css({
+                        'position': '',
+                        'width': '',
+                        'top': '',
+                        'overflow': '',
+                        '-webkit-overflow-scrolling': '',
+                        'height': ''
+                    });
+                } else {
+                    $('body').css({
+                        'position': '',
+                        'width': '',
+                        'top': '',
+                        'overflow': ''
+                    });
+                }
+                window.scrollTo(0, scrollPosition);
+            }
+        }
+
+        // タッチイベントとクリックイベントの両方に対応
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchEndX = 0;
+        var touchEndY = 0;
+        
+        $('.hamburger').on('touchstart click', function(e) {
+            if (e.type === 'touchstart') {
+                touchStartX = e.originalEvent.touches[0].clientX;
+                touchStartY = e.originalEvent.touches[0].clientY;
+            }
+            e.preventDefault();
+        });
+
+        $('.hamburger').on('touchend click', function(e) {
+            if (e.type === 'touchend') {
+                touchEndX = e.originalEvent.changedTouches[0].clientX;
+                touchEndY = e.originalEvent.changedTouches[0].clientY;
+                // スワイプの判定（縦方向のスワイプを除外）
+                var deltaX = Math.abs(touchEndX - touchStartX);
+                var deltaY = Math.abs(touchEndY - touchStartY);
+                if (deltaX < 10 && deltaY < 10) {
+                    toggleMenu(!$('.hamburger').hasClass('is-active'));
+                }
+            } else {
+                toggleMenu(!$('.hamburger').hasClass('is-active'));
             }
         });
 
         // メニューリンクのクリックイベント
-        $('.hamburger-menu__link').on('click', function() {
-            $('.hamburger').removeClass('is-active');
-            $('.hamburger-menu').removeClass('is-active');
-            // メニューが閉じるときはスクロールを有効化
-            var scrollTop = parseInt($('body').css('top'));
-            $('body').css({
-                'position': '',
-                'width': '',
-                'top': ''
-            });
-            $(window).scrollTop(-scrollTop);
+        $('.hamburger-menu__link').on('touchstart click', function(e) {
+            e.preventDefault();
+            toggleMenu(false);
+            // リンクの遷移を遅延実行
+            setTimeout(function() {
+                window.location.href = $(e.currentTarget).attr('href');
+            }, 300);
         });
 
         // 画面外クリックでメニューを閉じる
-        $(document).on('click', function(e) {
+        $(document).on('touchstart click', function(e) {
             if (!$(e.target).closest('.hamburger, .hamburger-menu').length) {
-                $('.hamburger').removeClass('is-active');
-                $('.hamburger-menu').removeClass('is-active');
-                // メニューが閉じるときはスクロールを有効化
-                var scrollTop = parseInt($('body').css('top'));
-                $('body').css({
-                    'position': '',
-                    'width': '',
-                    'top': ''
-                });
-                $(window).scrollTop(-scrollTop);
+                if ($('.hamburger').hasClass('is-active')) {
+                    toggleMenu(false);
+                }
+            }
+        });
+
+        // 画面回転時の処理
+        $(window).on('resize orientationchange', function() {
+            if ($('.hamburger').hasClass('is-active')) {
+                // 画面回転時にメニューを閉じる
+                toggleMenu(false);
+            }
+        });
+
+        // iOS Safariのバックグラウンド/フォアグラウンド切り替え時の処理
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible' && $('.hamburger').hasClass('is-active')) {
+                toggleMenu(false);
             }
         });
     });
