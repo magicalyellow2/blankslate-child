@@ -510,46 +510,6 @@ hr {
   .detail__list_image {
       width: 350px;
   }
-}
-
-/* 大型スマートフォン (430pxまで) */
-@media screen and (max-width: 430px) {
-  body {
-    font-size: 1.2rem;
-  }
-  .splash__title {
-    font-size: 3.4rem;
-  }
-  .splash__subtitle {
-    font-size: 1.4rem;
-  }
-  .splash__author {
-    font-size: 1.2rem;
-  }
-  .entry__title {
-    font-size: 2.4rem;
-  }
-  .task__strategy {
-    padding: 1rem;
-  }
-  .task__info {
-    display: block;
-    font-size: 1rem;
-  }
-  .incharge {
-    font-size: 1rem;
-    margin-bottom: 3rem;
-  }
-  .task__detail-head {
-    font-size: 1.6rem;
-  }
-  .detail__container {
-    justify-content: center;
-  }
-  .detail__list_image {
-    width: 390px;
-    height: 140px;
-  }
 
   /* ハンバーガーメニュー処理 */
   .footer {
@@ -638,6 +598,46 @@ hr {
   }
   .hamburger-menu__link:hover {
     text-decoration: underline;
+  }
+}
+
+/* 大型スマートフォン (430pxまで) */
+@media screen and (max-width: 430px) {
+  body {
+    font-size: 1.2rem;
+  }
+  .splash__title {
+    font-size: 3.4rem;
+  }
+  .splash__subtitle {
+    font-size: 1.4rem;
+  }
+  .splash__author {
+    font-size: 1.2rem;
+  }
+  .entry__title {
+    font-size: 2.4rem;
+  }
+  .task__strategy {
+    padding: 1rem;
+  }
+  .task__info {
+    display: block;
+    font-size: 1rem;
+  }
+  .incharge {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+  .task__detail-head {
+    font-size: 1.6rem;
+  }
+  .detail__container {
+    justify-content: center;
+  }
+  .detail__list_image {
+    width: 390px;
+    height: 140px;
   }
 }
 
