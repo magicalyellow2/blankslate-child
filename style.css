@@ -618,6 +618,9 @@ hr {
   .splash__subtitle {
     font-size: 1.4rem;
   }
+  .splash__footer {
+    bottom: 2rem;
+  }
   .splash__author {
     font-size: 1.2rem;
   }
