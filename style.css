@@ -343,15 +343,21 @@ hr {
 }
 .entry__image {
   max-width: 100%;
-  margin: 1rem auto;
-  display: flex;
-  justify-content: center;
+  margin: 1rem auto 1.5rem;
 }
 .entry__image--kv,
 .entry__image--main {
   max-width: 100%;
   width: auto;
   border-radius: 1rem;
+}
+.entry__image--kv {
+  display: block;
+  margin: 0 auto;
+  box-shadow:
+  0 8px 10px 1px rgba(0, 0, 0, .14),
+  0 3px 14px 2px rgba(0, 0, 0, .12),
+  0 5px 5px -3px rgba(0, 0, 0, .2);
 }
 .entry__image--main {
   margin-bottom: 0;
