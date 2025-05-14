@@ -415,9 +415,12 @@ hr {
   padding-left: 1rem;
   border-left: 6px solid #fff;
   line-height: 1;
+  margin-top: 3rem;
 }
-.tatsk__detail {
+.task__detail {
   line-height: 1.6;
+  border: solid 1px #aaa;
+  padding: 1.4rem 2rem;
 }
 .task__incharge-detail {
   margin-bottom: 2rem;
@@ -425,6 +428,18 @@ hr {
 .task__info-hr {
   border-top: 1px solid #aaa;
   margin: 1rem 0;
+}
+.task__note {
+  width: 100%;
+}
+.task__note-high-light {
+  background: linear-gradient(transparent 30%, #545454 50%);
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.task__note-high-light::before {
+  content: "※ ";
+  font-size: 1.6rem;
 }
 
 /* ---------
@@ -460,7 +475,6 @@ hr {
   TAGS
 --------- */
 .tag {
-  margin-top: 2rem;
   font-size: 1rem;
   letter-spacing: .15rem;
   font-weight: bold;
@@ -640,6 +654,9 @@ hr {
   }
   .task__detail-head {
     font-size: 1.6rem;
+  }
+  .task__detail {
+    padding: .7rem 1rem;
   }
   .detail__container {
     justify-content: center;

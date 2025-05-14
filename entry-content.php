@@ -9,7 +9,7 @@ if(get_field('acf-clinet',$post_id)) {
 	$strategy = (get_field('acf-strategy',$post_id)) ? '<div class="task__strategy">' . get_field('acf-strategy') . '</div>' : '';
 	
 	//業務情報の引き出し
-	$client = (get_field('acf-clinet',$post_id)) ? '<div class="client"><span class="client__label">CL：</span><span class="client__name">' . get_field('acf-clinet',$post_id) . '</span><span class="client__type">/ ' . get_field('acf-type',$post_id) . '</span></div>' : '' ;
+	$client = (get_field('acf-clinet',$post_id)) ? '<div class="client"><span class="client__label">CL：</span><span class="client__name">' . get_field('acf-clinet',$post_id) . '</span>' . "&nbsp;/&nbsp;" . '<span class="client__type">' . get_field('acf-type',$post_id) . '</span></div>' : '' ;
 	$year = (get_field('acf-year',$post_id)) ? '<div class="year"><span class="year__value">' . get_field('acf-year',$post_id) . '</span><span class="year__place">' . "&nbsp;/&nbsp;" . get_field('acf-place',$post_id) . '</span></div>' : '';
 	$incharge = (get_field('acf-in-charge',$post_id)) ? '<div class="incharge"><span class="incharge__label">担当：</span><span class="incharge__name">' . get_field('acf-in-charge',$post_id) . '</span></div>' : '';
 	$task_info = (!empty($incharge)) ? '<div class="task__info">' . $client . $year . '</div><hr class="task__info-hr">' . $incharge : '';
@@ -46,17 +46,17 @@ if(get_field('acf-clinet',$post_id)) {
 	$img_sub = (is_array($img_sub_ar)) ? '<h2 class="task__detail-head">業務内容</h2>' . "\n" . '<ul class="detail__container">' . implode("\n", $img_sub_ar) . "\n" .'</ul>' : '';
 	
 	//補足
-	$task_note = (get_field('acf-note',$post_id)) ? '<div class="task__note">' . get_field('acf-note') . '</div>' : '';
+	$task_note = (get_field('acf-note',$post_id)) ? '<div class="task__note"><span class="task__note-high-light">' . get_field('acf-note') . '</span></div>' : '';
 	
 	print $assignment;
 	print $strategy;
 	print $img_kv;
 	print $task_info;
-	print $incharge_detail;
 	print $img_main;
 	print $img_sub;
 	print $img_last;
 	print $task_note;
+	print $incharge_detail;
 }
 ?>
 <?php endif; ?>

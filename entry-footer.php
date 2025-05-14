@@ -1,4 +1,4 @@
-<div class="entry-footer">
+<div class="entry__footer">
 <!--span class="cat-links"><?php esc_html_e( 'Categories: ', 'blankslate' ); ?><?php the_category( ', ' ); ?></span-->
 <div class="tag">
   <ul class="tag__list">
