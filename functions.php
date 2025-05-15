@@ -127,9 +127,9 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
         $cmmnt = wp_kses_post($acf_cmmnt);
 
         switch($type){
-            case 'list': $class = ' class="detail__list_image"'; break;
+            case 'list': $class = ' class="detail__list-image"'; break;
             case 'main': $class = ' class="entry__image--main"'; break;
-            case 'last': $class = ' class="detail__list_image--last"'; break;
+            case 'last': $class = ' class="detail__list-image--last"'; break;
             default: $class=''; break;
         }
 
@@ -143,7 +143,7 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
                 break;
                 
             case 'main': 
-                $cmmnt = (!empty($cmmnt)) ? '<p>' . $cmmnt . '</p>' : '';
+                $cmmnt = (!empty($cmmnt)) ? '<p class="entry__image-main-cmmnt">' . $cmmnt . '</p>' : '';
                 $img = '<div class="entry__image">' . $img . $cmmnt . '</div>';
                 break;
 				

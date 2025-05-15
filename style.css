@@ -362,6 +362,9 @@ hr {
 .entry__image--main {
   margin-bottom: 0;
 }
+.entry__image-main-cmmnt {
+  margin-top: .5rem;
+}
 .entry__footer {
   margin-top: 3rem;
 }
@@ -459,13 +462,13 @@ hr {
 .detail__list-cmmnt {
   margin-bottom: .5rem;
 }
-.detail__list_image {
+.detail__list-image {
   width: 364px;
   height: 200px;
   object-fit: cover;
   border-radius: 1rem;
 }
-.detail__list_image--last {
+.detail__list-image--last {
   max-width: 100%;
   object-fit: cover;
   border-radius: 1rem;
@@ -514,7 +517,7 @@ hr {
 
 /* タブレット縦向き (834pxまで) */
 @media screen and (max-width: 834px) {
-  .detail__list_image {
+  .detail__list-image {
       width: 360px;
   }
 
@@ -525,7 +528,7 @@ hr {
 
 /* タブレット縦向き (768pxまで) */
 @media screen and (max-width: 768px) {
-  .detail__list_image {
+  .detail__list-image {
       width: 350px;
   }
 
@@ -661,7 +664,7 @@ hr {
   .detail__container {
     justify-content: center;
   }
-  .detail__list_image {
+  .detail__list-image {
     width: 390px;
     height: 140px;
   }
@@ -681,7 +684,7 @@ hr {
   .entry__title {
     font-size: 2rem;
   }
-  .detail__list_image {
+  .detail__list-image {
     height: 120px;
   }
 }
