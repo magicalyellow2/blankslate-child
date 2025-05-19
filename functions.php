@@ -92,10 +92,11 @@ function get_footer_menu()
     $foot_cat = '<div class="footer__menu-section"><p class="footer__menu-head">WORKS：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']</div>';
     
     //フッターメニューその他
-    $add_cat_array = array('resume', 'about');
+    $add_cat_array = array('resume', 'about', 'home');
     $cat_add_array = array();
     foreach($add_cat_array as $val){
-        $cat_add_array[] = '<a class="footer__menu-item" href="' . esc_url(home_url('/' . sanitize_title($val))) . '">' . esc_html(strtoupper($val)) . '</a>';
+        $add_url = ($val == 'home') ? '' : sanitize_title($val);
+        $cat_add_array[] = '<a class="footer__menu-item" href="' . esc_url(home_url('/' . $add_url)) . '">' . esc_html(strtoupper($val)) . '</a>';
     }
     $foot_cat .= '<div class="footer__menu-section"><p class="footer__menu-head">REST：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $cat_add_array) . "&nbsp;" . ']</div>';
     
