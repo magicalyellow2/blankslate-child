@@ -631,6 +631,9 @@ hr {
   body {
     font-size: 1.2rem;
   }
+  .card__label {
+    font-size: 1.1rem;
+  }
   .splash__title {
     font-size: 3.4rem;
   }

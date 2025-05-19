@@ -59,16 +59,6 @@ function get_ratiocal($src = '', $num_w = 0, $attr = 'y')
 }
 
 /**
- * サムネイルの幅を取得（デフォルト値あり）
- * 
- * @param int $num カスタム幅の値
- * @return int サムネイルの幅
- */
-function get_thumbnail_width($num = 0) {
-    return empty($num) ? 300 : intval($num);
-}
-
-/**
  * カテゴリーと追加リンクを含むフッターメニューを生成
  * 
  * @return string フォーマットされたフッターメニューのHTML
@@ -226,6 +216,17 @@ function jq_page_top()
 	});
 	
 	here;
+}
+
+/**
+ * サムネイルの幅を取得（デフォルト値あり）
+ * 
+ * @param int $num カスタム幅の値
+ * @return int サムネイルの幅
+ */
+function get_thumbnail_width($is_mobile = 'N') {
+    $width_size = ($is_mobile === 'N') ? intval(300) : intval(300);
+    return $width_size;
 }
 
 /**
