@@ -470,8 +470,10 @@ hr {
 }
 .detail__list-image--last {
   max-width: 100%;
+  width: 100%;
   object-fit: cover;
   border-radius: 1rem;
+  max-height: 200px;
 }
 
 /* ---------
@@ -667,6 +669,9 @@ hr {
   .detail__list-image {
     width: 390px;
     height: 140px;
+  }
+  .detail__list-image--last {
+    max-height: 140px;
   }
 }
 
