@@ -413,6 +413,9 @@ hr {
 .incharge {
   font-size: 1.1rem;
   margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .task__detail-head {
   padding-left: 1rem;
@@ -659,6 +662,7 @@ hr {
   .incharge {
     font-size: 1rem;
     margin-bottom: 3rem;
+    display: block;
   }
   .task__detail-head {
     font-size: 1.6rem;

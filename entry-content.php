@@ -10,8 +10,9 @@ if(get_field('acf-clinet',$post_id)) {
 	
 	//業務情報の引き出し
 	$client = (get_field('acf-clinet',$post_id)) ? '<div class="client"><span class="client__label">CL：</span><span class="client__name">' . get_field('acf-clinet',$post_id) . '</span>' . "&nbsp;/&nbsp;" . '<span class="client__type">' . get_field('acf-type',$post_id) . '</span></div>' : '' ;
+	$task_url = (get_field('acf-url',$post_id)) ? '<div class="task__url"><a href="' . get_field('acf-url',$post_id) . '" target="_blank" rel="noopener">' . get_field('acf-url',$post_id) . '</a>' : '';
 	$year = (get_field('acf-year',$post_id)) ? '<div class="year"><span class="year__value">' . get_field('acf-year',$post_id) . '</span><span class="year__place">' . "&nbsp;/&nbsp;" . get_field('acf-place',$post_id) . '</span></div>' : '';
-	$incharge = (get_field('acf-in-charge',$post_id)) ? '<div class="incharge"><span class="incharge__label">担当：</span><span class="incharge__name">' . get_field('acf-in-charge',$post_id) . '</span></div>' : '';
+	$incharge = (get_field('acf-in-charge',$post_id)) ? '<div class="incharge"><div><span class="incharge__label">担当：</span><span class="incharge__name">' . get_field('acf-in-charge',$post_id) . '</span></div>' . $task_url . '</div></div>' : '';
 	$task_info = (!empty($incharge)) ? '<div class="task__info">' . $client . $year . '</div><hr class="task__info-hr">' . $incharge : '';
 	
 	//担当内容の引き出し
