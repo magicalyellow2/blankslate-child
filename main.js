@@ -11,7 +11,11 @@ function splash(ms) {
   }, ms);
 }
 
-function initMasonry(containerSelector, itemSelector, columnWidth) {
+function getColumnWidth() {
+  return window.innerWidth <= 430 ? Math.floor(window.innerWidth / 2) : 300;
+}
+
+function initMasonry(containerSelector, itemSelector) {
   var container = document.querySelector(containerSelector);
   if (!container) return;
 
@@ -25,11 +29,16 @@ function initMasonry(containerSelector, itemSelector, columnWidth) {
   });
 
   Promise.all(promises).then(function() {
-    new Masonry(container, {
+    var msnry = new Masonry(container, {
       itemSelector: itemSelector,
-      columnWidth: columnWidth,
+      columnWidth: getColumnWidth(),
       isFitWidth: true,
       transitionDuration: '0.4s'
+    });
+
+    window.addEventListener('resize', function() {
+      msnry.options.columnWidth = getColumnWidth();
+      msnry.layout();
     });
   });
 }
@@ -195,7 +204,7 @@ function init() {
 
   if (document.querySelector('.container') && document.querySelector('.card')) {
     // トップ・カテゴリページ
-    initMasonry('.container', '.card', 300);
+    initMasonry('.container', '.card');
     initOnScreen('.card');
   } else if (document.querySelector('.entry__container')) {
     // 作品詳細ページ
