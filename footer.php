@@ -7,12 +7,6 @@
 				<?php echo get_footer_menu(); ?>
 			</div>
     </footer>
-    <script>
-        <?php echo jq_masonry('.container', '.card', get_thumbnail_width()); ?>
-        <?php echo jq_on_screen('.card'); ?>
-        <?php echo jq_page_top(); ?>
-        <?php echo jq_hamburger_menu(); ?>
-        <?php echo jq_splash(); ?>
-    </script>
+    <?php blankslate_child_scripts(); ?>
 </body>
 </html>
