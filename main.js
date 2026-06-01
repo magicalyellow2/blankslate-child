@@ -7,12 +7,19 @@ function splash(ms) {
   setTimeout(function() {
     el.style.transition = 'opacity 0.5s';
     el.style.opacity = '0';
-    el.addEventListener('transitionend', function() { el.remove(); }, { once: true });
+    var removed = false;
+    function removeSplash() {
+      if (removed) return;
+      removed = true;
+      el.remove();
+    }
+    el.addEventListener('transitionend', removeSplash, { once: true });
+    setTimeout(removeSplash, 600); // transitionend が発火しない場合のフォールバック
   }, ms);
 }
 
 function getColumnWidth() {
-  return window.innerWidth <= 430 ? Math.floor(window.innerWidth / 2) : 300;
+  return window.innerWidth <= 540 ? Math.floor(window.innerWidth / 2) : 300;
 }
 
 function initMasonry(containerSelector, itemSelector) {

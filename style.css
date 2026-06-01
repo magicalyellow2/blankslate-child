@@ -533,6 +533,16 @@ hr {
   }
 }
 
+/* スマートフォン全般 (540pxまで) — 2カラムカードレイアウト */
+@media screen and (max-width: 540px) {
+  .card {
+    width: calc(50vw - 20px); /* margin 4px×2 + padding 6px×2 = 20px を除いた半幅 */
+  }
+  .card__link {
+    width: 100%;
+  }
+}
+
 /* タブレット縦向き (768pxまで) */
 @media screen and (max-width: 768px) {
   .detail__list-image {
@@ -635,12 +645,6 @@ hr {
 @media screen and (max-width: 430px) {
   body {
     font-size: 1.2rem;
-  }
-  .card {
-    width: calc(50vw - 20px); /* margin 4px×2 + padding 6px×2 = 20px を除いた半幅 */
-  }
-  .card__link {
-    width: 100%;
   }
   .card__label {
     font-size: 0.75rem;
