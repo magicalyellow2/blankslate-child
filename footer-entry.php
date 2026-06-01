@@ -7,10 +7,10 @@
 				<?php echo get_footer_menu(); ?>
 			</div>
     </footer>
-<script>
-<?php echo jq_on_screen('.entry__container'); ?>
-<?php echo jq_page_top(); ?>
-<?php echo jq_hamburger_menu(); ?>
-</script>
+    <script>
+    <?php echo jq_on_screen('.entry__container'); ?>
+    <?php echo jq_page_top(); ?>
+    <?php echo jq_hamburger_menu(); ?>
+    </script>
 </body>
 </html>

@@ -397,7 +397,7 @@ hr {
   left: 48%;
 }
 .task__strategy {
-  padding: 1rem 1.5rem;
+  padding: 1rem 0rem;
   line-height: 1.6;
 }
 .task__info {
