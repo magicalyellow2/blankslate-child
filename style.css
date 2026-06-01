@@ -593,6 +593,7 @@ hr {
     right: 2rem;
     z-index: 1000;
     cursor: pointer;
+    touch-action: manipulation; /* ダブルタップズーム防止 */
   }
   .hamburger__line {
     display: block;

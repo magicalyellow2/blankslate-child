@@ -98,14 +98,6 @@ function initHamburgerMenu() {
     if (hm && hm.classList.contains('is-active')) e.preventDefault();
   }, { passive: false });
 
-  // ダブルタップズーム防止
-  var lastTouchEnd = 0;
-  document.addEventListener('touchend', function(e) {
-    var now = Date.now();
-    if (now - lastTouchEnd <= 300) e.preventDefault();
-    lastTouchEnd = now;
-  }, false);
-
   // フッターメニューの内容からハンバーガーメニューを生成
   var menuContent = footerMenu.innerHTML.replace(/\[|\]|\||&nbsp;/g, '');
 
