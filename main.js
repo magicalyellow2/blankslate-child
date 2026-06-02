@@ -197,9 +197,15 @@ function initHamburgerMenu() {
   });
 }
 
+function initGLightbox() {
+  if (typeof GLightbox === 'undefined') return;
+  GLightbox({ selector: '[data-gallery]', touchNavigation: true });
+}
+
 function init() {
   initPageTop();
   initHamburgerMenu();
+  initGLightbox();
 
   if (document.querySelector('.container') && document.querySelector('.card')) {
     // トップ・カテゴリページ
