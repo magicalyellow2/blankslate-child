@@ -132,7 +132,7 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
                 break;
 				
 			case 'last':
-                $img = '<a href="' . $path . '" data-gallery="group" data-title="' . esc_attr($cmmnt) . '">' . $img . '</a>';
+                $img = '<a class="detail__last-link" href="' . $path . '" data-gallery="group" data-title="' . esc_attr($cmmnt) . '">' . $img . '</a>';
                 $cmmnt = (!empty($cmmnt)) ? '<p class="detail__list-cmmnt">' . $cmmnt . '</p>' : '';
                 $img = '<div class="entry__image">' . $cmmnt . $img . '</div>';
 				break;
