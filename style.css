@@ -386,6 +386,13 @@ hr {
   display: flex;
   align-items: flex-end;
   background: #0a1520;
+  cursor: pointer;
+  text-decoration: none;
+}
+.entry__wrapper .entry__kv:link,
+.entry__wrapper .entry__kv:visited,
+.entry__wrapper .entry__kv:hover {
+  text-decoration: none;
 }
 .entry__kv-bg {
   position: absolute;
@@ -393,6 +400,10 @@ hr {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transition: transform 0.4s ease;
+}
+.entry__kv:hover .entry__kv-bg {
+  transform: scale(1.05);
 }
 .entry__kv-bg::after {
   content: '';
@@ -408,9 +419,9 @@ hr {
 }
 .entry__kv-title {
   font-size: 3rem;
+  line-height: 1.2;
   color: #fff;
   letter-spacing: 0.1rem;
-  line-height: 1;
   margin-bottom: 0.6rem;
 }
 .entry__kv-sub {
@@ -653,6 +664,16 @@ hr {
   margin-bottom: 0;
   line-height: 1.5;
 }
+.detail__list a {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
+.entry__wrapper .detail__list a:link,
+.entry__wrapper .detail__list a:visited,
+.entry__wrapper .detail__list a:hover {
+  text-decoration: none;
+}
 .detail__list-image {
   width: 100%;
   height: auto;
@@ -660,6 +681,10 @@ hr {
   object-fit: cover;
   border-radius: 0;
   display: block;
+  transition: transform 0.4s ease;
+}
+.detail__list a:hover .detail__list-image {
+  transform: scale(1.05);
 }
 .detail__list-image--last {
   max-width: 100%;
@@ -905,7 +930,7 @@ hr {
     padding: 1.6rem 1.8rem;
   }
   .entry__kv-title {
-    font-size: 3.2rem;
+    font-size: 2.6rem;
   }
   .entry__kv-sub {
     font-size: 1rem;
@@ -969,7 +994,7 @@ hr {
   }
   .detail__container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    gap: 1rem;
   }
   .entry__container .task__info {
     display: grid;

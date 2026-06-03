@@ -25,13 +25,13 @@ if(get_field('acf-clinet',$post_id)) {
 	$kv_sub = $kv_parts
 		? '<div class="entry__kv-sub">' . implode(' · ', $kv_parts) . '</div>'
 		: '';
-	$kv = '<div class="entry__kv">'
+	$kv = '<a class="entry__kv glightbox" href="' . esc_url($thumbnail_url) . '" data-gallery="kv">'
 		. '<div class="entry__kv-bg" style="background-image:url(' . esc_url($thumbnail_url) . ')"></div>'
 		. '<div class="entry__kv-overlay">'
 		. '<div class="entry__kv-title">' . esc_html(get_the_title()) . '</div>'
 		. $kv_sub
 		. '</div>'
-		. '</div>';
+		. '</a>';
 
 	/* ── chips ── */
 	$chip_type  = $acf_type   ? '<span class="entry__chip">' . esc_html($acf_type)   . '</span>' : '';
