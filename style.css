@@ -318,7 +318,7 @@ hr {
 
 .entry__wrapper {
   color: #fff;
-  margin: 0 auto 10rem;
+  margin: 2rem auto 10rem;
   width: 100%;
   max-width: 800px;
   box-sizing: border-box;
@@ -668,6 +668,7 @@ hr {
   display: block;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
 }
 .entry__wrapper .detail__list a:link,
 .entry__wrapper .detail__list a:visited,
@@ -686,12 +687,29 @@ hr {
 .detail__list a:hover .detail__list-image {
   transform: scale(1.05);
 }
+.detail__last-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.entry__wrapper .detail__last-link:link,
+.entry__wrapper .detail__last-link:visited,
+.entry__wrapper .detail__last-link:hover {
+  text-decoration: none;
+}
+.detail__last-link:hover .detail__list-image--last {
+  transform: scale(1.05);
+}
 .detail__list-image--last {
   max-width: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 0;
   max-height: 200px;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 /* ---------
@@ -791,6 +809,24 @@ hr {
 @media screen and (max-width: 834px) {
   .splash__footer {
     bottom: 5rem;
+  }
+  .entry__kv::after,
+  .detail__list a::after,
+  .detail__last-link::after {
+    content: '';
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color: rgba(0, 0, 0, 0.45);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
   }
 }
 
@@ -953,6 +989,9 @@ hr {
   .card__link {
     width: 100%;
   }
+  .entry__kv-title {
+    font-size: 2.2rem;
+  }
 }
 
 /* 大型スマートフォン (430px) */
@@ -995,6 +1034,9 @@ hr {
   .detail__container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+  }
+  .entry__kv-title {
+    font-size: 2rem;
   }
   .entry__container .task__info {
     display: grid;
