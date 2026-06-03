@@ -1,8 +1,8 @@
 <div class="entry__footer">
-  <!--span class="cat-links"><?php esc_html_e( 'Categories: ', 'blankslate' ); ?><?php the_category( ', ' ); ?></span-->
+  <div class="entry__section-head"><span class="entry__section-title">TAGS</span></div>
   <div class="tag">
     <ul class="tag__list">
-      <li class="tag__item">TAGS:<?php echo get_styled_tags(get_the_tags()); ?></li>
+      <li class="tag__item"><?php echo get_styled_tags(get_the_tags()); ?></li>
     </ul>
   </div>
 </div>

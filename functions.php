@@ -1,11 +1,5 @@
 <?php
 /**
- * Recommended way to include parent theme styles.
- * (Please see http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme)
- *
- */  
-
-/**
  * 親テーマと子テーマのスタイルを読み込む
  * @see http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme
  */
@@ -52,9 +46,9 @@ function get_ratiocal($src = '', $num_w = 0, $attr = 'y')
 
     $num_y = $num_w * $imgsize[1] / $imgsize[0];
     switch($attr){
-        case 'y': return ' width="' . $num_w . '" height="' . round($num_y) . '"'; break;
-        case 'css': return ' style="width:' . $num_w . 'px; height:' . round($num_y) . 'px;"'; break;
-        default: return array($num_w, round($num_y)); break;
+        case 'y':   return ' width="' . $num_w . '" height="' . round($num_y) . '"';
+        case 'css': return ' style="width:' . $num_w . 'px; height:' . round($num_y) . 'px;"';
+        default:    return array($num_w, round($num_y));
     }
 }
 
@@ -91,7 +85,6 @@ function get_footer_menu()
     }
     $foot_cat = '<div class="footer__menu-section"><p class="footer__menu-head">WORKS：</p>[' . "&nbsp;" . implode("&nbsp;|&nbsp;", $category_links) . "&nbsp;" . ']</div>';
     
-    //フッターメニューその他
     $add_cat_array = array('resume', 'about', 'home');
     $cat_add_array = array();
     foreach($add_cat_array as $val){
@@ -127,10 +120,10 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
         $img = (!empty($path)) ? '<img' . $class . ' src="' . $path . '" alt="' . esc_attr($cmmnt) . '">' : '';
         
         switch($type){
-            case 'list': 
+            case 'list':
                 $img = '<a href="' . $path . '" data-gallery="group" data-title="' . esc_attr($cmmnt) . '">' . $img . '</a>';
                 $cmmnt = (!empty($cmmnt)) ? '<p class="detail__list-cmmnt">' . $cmmnt . '</p>' : '';
-                $img = '<li class="detail__list">' . $cmmnt . $img . '</li>';
+                $img = '<li class="detail__list">' . $img . $cmmnt . '</li>';
                 break;
                 
             case 'main': 
@@ -155,18 +148,16 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
 
 /**
  * アーカイブタイトルのフォーマットをカスタマイズ
- * 
+ *
+ * @param string $title 元のアーカイブタイトル
  * @return string 修正されたアーカイブタイトル
  */
-function custom_archive_title()
+function custom_archive_title($title = '')
 {
-    if (function_exists('is_category') && is_category()) {
-        $title = function_exists('single_cat_title') ? single_cat_title('', false) : '';
-        $title = 'WORKS: ' . strtoupper($title);
-		return $title;
-    }else{
-		return;
-	}
+    if (is_category()) {
+        return 'WORKS: ' . strtoupper(single_cat_title('', false));
+    }
+    return $title;
 }
 add_filter('get_the_archive_title', 'custom_archive_title');
 
@@ -182,30 +173,28 @@ add_filter('get_the_archive_title', 'custom_archive_title');
  * - HTMLエスケープ処理を実施
  * - aタグでマークアップ
  */
-function get_styled_tags($tags=''){
-    if(empty($tags)){
+function get_styled_tags($tags = '')
+{
+    if (empty($tags)) {
         return;
-    }else{
-        $result = array();
-        foreach($tags as $tag) {
-            if($tag){
-                $result[] = '<a class="tag__link" href="' . esc_url(home_url('/tags/' . sanitize_title($tag->name))) . '" rel="tag">' . esc_html(strtoupper($tag->name)) . '(' . esc_html($tag->count) . ')</a>';
-            }
-        }
-        return implode('', $result);
     }
+    $result = array();
+    foreach ($tags as $tag) {
+        if ($tag) {
+            $result[] = '<a class="tag__link" href="' . esc_url(home_url('/tags/' . sanitize_title($tag->name))) . '" rel="tag">' . esc_html(strtoupper($tag->name)) . '(' . esc_html($tag->count) . ')</a>';
+        }
+    }
+    return implode('', $result);
 }
 
 
 /**
- * サムネイルの幅を取得（デフォルト値あり）
- * 
- * @param int $num カスタム幅の値
+ * サムネイルの幅を返す
+ *
  * @return int サムネイルの幅
  */
-function get_thumbnail_width($is_mobile = 'N') {
-    $width_size = ($is_mobile === 'N') ? intval(300) : intval(300);
-    return $width_size;
+function get_thumbnail_width() {
+    return 300;
 }
 
 
