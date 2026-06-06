@@ -11,8 +11,6 @@
     CSS VARIABLES
 ========================================= */
 
-/*test*/
-
 :root {
   /* ── Backgrounds ── */
   --color-bg:        #1d1d22;
@@ -1133,7 +1131,7 @@ hr {
 /* ─── Page Heading ─── */
 .page-resume .page-heading {
   text-align: center;
-  margin-bottom: 7rem;
+  margin-bottom: 6rem;
   opacity: 0;
   animation: resumeFadeUp 0.8s ease forwards;
 }
