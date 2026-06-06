@@ -1160,6 +1160,7 @@ hr {
   font-size: 1.4rem;
   color: var(--gray-light);
   line-height: 1.85;
+  letter-spacing: 0.05em;
 }
 
 .page-resume .profile__meta {
@@ -1393,6 +1394,7 @@ hr {
   font-size: 1.3rem;
   color: var(--gray-light);
   line-height: 1.8;
+  letter-spacing: 0.05em;
 }
 
 .page-resume .timeline-item__tags {
