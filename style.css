@@ -377,7 +377,7 @@ hr {
 }
 .entry__title {
   color: var(--color-gray);
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   margin: 6rem auto 1.2rem;
