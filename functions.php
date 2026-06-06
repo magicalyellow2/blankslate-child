@@ -155,7 +155,7 @@ function get_entry_image($acf_img_path='', $acf_cmmnt='', $type='list')
 function custom_archive_title($title = '')
 {
     if (is_category()) {
-        return 'WORKS: ' . strtoupper(single_cat_title('', false));
+        return strtoupper(single_cat_title('', false));
     }
     return $title;
 }
@@ -187,7 +187,6 @@ function get_styled_tags($tags = '')
     return implode('', $result);
 }
 
-
 /**
  * サムネイルの幅を返す
  *
@@ -197,9 +196,6 @@ function get_thumbnail_width() {
     return 300;
 }
 
-
-
-
 /**
  * main.js を </body> 直前に出力する
  */
@@ -207,3 +203,20 @@ function blankslate_child_scripts() {
     echo '<script src="' . get_stylesheet_directory_uri() . '/main.js?ver=' . date('U') . '"></script>';
 }
 add_action('wp_footer', 'blankslate_child_scripts');
+
+/**
+ * functions.php の末尾に追記してください
+ * レジュメページ用CSSの読み込み
+ */
+function susumu_resume_styles() {
+    // レジュメページ（スラッグ "resume"）のみCSSを読み込む
+    if ( is_page( 'resume' ) ) {
+        wp_enqueue_style(
+            'resume-page',
+            get_stylesheet_directory_uri() . '/resume-page.css',
+            array(),
+            '1.0.0'
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'susumu_resume_styles' );

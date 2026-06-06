@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="header">
-		<div class="header__arrow"></div>
+		<div class="header__arrow">SCROLL DOWN</div>
 		<h1 class="entry__title" itemprop="name"><?php the_archive_title(); ?></h1>
 	</div>
 	<div class="container">
