@@ -122,8 +122,8 @@ if(get_field('acf-clinet',$post_id)) {
 	print $kv;
 	print $chips;
 	print $intro;
-	print $img_main;
 	print $section_strategy;
+	print $img_main;
 	print $section_info;
 	print $section_deliverables;
 	print $section_about;
