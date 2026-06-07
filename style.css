@@ -354,7 +354,7 @@ hr {
   left: 0;
   height: 2px;
   width: 0;
-  background: #1a1a1a;
+  background: #4a7fa5;
   transition: width 0.3s ease;
   z-index: 10000;
 }
