@@ -349,13 +349,14 @@ hr {
   font-size: 1.4rem;
 }
 .splash__progress {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: 2px;
   width: 0;
   background: #1a1a1a;
   transition: width 0.3s ease;
+  z-index: 10000;
 }
 
 /* ========================================
@@ -1762,5 +1763,3 @@ hr {
     aspect-ratio: 1 / 1;
   }
 }
-
-/*test*/
