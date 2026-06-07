@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/style.css?ver=<?php echo date('U'); ?>">
 <title><? echo wp_get_document_title(); ?></title>
 </head>
-<body onload="splash(2000)">
+<body>
     <div class="splash">
 		<div class="splash__content">
 		  <div class="splash__cover">

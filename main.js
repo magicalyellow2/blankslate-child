@@ -1,21 +1,54 @@
 'use strict';
 
-// グローバルスコープ: header.php の <body onload="splash(2000)"> から呼ばれる
-function splash(ms) {
+function initSplash() {
   var el = document.querySelector('.splash');
   if (!el) return;
-  setTimeout(function() {
-    el.style.transition = 'opacity 0.5s';
-    el.style.opacity = '0';
-    var removed = false;
-    function removeSplash() {
-      if (removed) return;
-      removed = true;
-      el.remove();
-    }
-    el.addEventListener('transitionend', removeSplash, { once: true });
-    setTimeout(removeSplash, 600); // transitionend が発火しない場合のフォールバック
-  }, ms);
+
+  var bar = document.createElement('div');
+  bar.className = 'splash__progress';
+  el.appendChild(bar);
+
+  var imgs = Array.from(document.querySelectorAll('.card__image'));
+  var total = imgs.length;
+  var loaded = 0;
+  var dismissed = false;
+  var MIN_MS = 400;
+  var startTime = Date.now();
+
+  function hideSplash() {
+    if (dismissed) return;
+    dismissed = true;
+    var wait = Math.max(0, MIN_MS - (Date.now() - startTime));
+    setTimeout(function() {
+      el.style.transition = 'opacity 0.5s';
+      el.style.opacity = '0';
+      var removed = false;
+      function removeSplash() {
+        if (removed) return;
+        removed = true;
+        el.remove();
+      }
+      el.addEventListener('transitionend', removeSplash, { once: true });
+      setTimeout(removeSplash, 600);
+    }, wait);
+  }
+
+  if (total === 0) {
+    hideSplash();
+    return;
+  }
+
+  function onLoad() {
+    loaded++;
+    bar.style.width = (loaded / total * 100) + '%';
+    if (loaded >= total) hideSplash();
+  }
+
+  imgs.forEach(function(img) {
+    if (img.complete && img.naturalHeight !== 0) { onLoad(); return; }
+    img.addEventListener('load', onLoad, { once: true });
+    img.addEventListener('error', onLoad, { once: true });
+  });
 }
 
 function getColumnWidth() {
@@ -203,6 +236,7 @@ function initGLightbox() {
 }
 
 function init() {
+  initSplash();
   initPageTop();
   initHamburgerMenu();
   initGLightbox();
