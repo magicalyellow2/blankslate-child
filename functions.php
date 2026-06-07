@@ -220,3 +220,20 @@ function susumu_resume_styles() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'susumu_resume_styles' );
+
+/**
+ * functions.php の末尾に追記してください
+ * アバウトページ用CSSの読み込み
+ */
+function susumu_about_styles() {
+    if ( is_page( 'about' ) ) {
+        wp_enqueue_style(
+            'about-page',
+            get_stylesheet_directory_uri() . '/about-page.css',
+            array(),
+            '1.0.0'
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'susumu_about_styles' );
+ 

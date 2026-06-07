@@ -1554,3 +1554,202 @@ hr {
   .page-resume .career-step__header { flex-direction: column; gap: 0.3rem; }
   .page-resume .career-steps { padding-left: 1.6rem; }
 }
+
+/* ============================================
+   ABOUT PAGE — susumu.info/portfolio/about/
+   ============================================ */
+
+.page-about {
+  --bg-card: #242429;
+  --bg-card-hover: #2a2a30;
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(255,255,255,0.25);
+  --white: #ffffff;
+  --gray: #888888;
+  --gray-light: #aaaaaa;
+}
+
+/* ─── Layout ─── */
+.page-about .about-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0rem 3rem 10rem;
+}
+
+/* ─── Heading ─── */
+.page-about .about-heading {
+  text-align: center;
+  margin-bottom: 7rem;
+  opacity: 0;
+  animation: aboutFadeUp 0.8s ease forwards;
+}
+
+.page-about .about-heading__title {
+  font-size: clamp(3.2rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--white);
+}
+
+.page-about .about-heading__line {
+  width: 1px;
+  height: 5rem;
+  background: linear-gradient(to bottom, transparent, var(--border-accent), transparent);
+  margin: 3rem auto 0;
+}
+
+/* ─── Intro ─── */
+.page-about .about-intro {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 5rem;
+  margin-bottom: 7rem;
+  opacity: 0;
+  animation: aboutFadeUp 0.8s ease 0.15s forwards;
+}
+
+.page-about .about-intro__photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-about .about-intro__photo-placeholder span {
+  font-size: 1.1rem;
+  letter-spacing: 0.3em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+.page-about .about-intro__meta {
+  margin-bottom: 2.8rem;
+}
+
+.page-about .about-meta-item {
+  display: flex;
+  gap: 1.6rem;
+  align-items: baseline;
+  padding: 1.0rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-about .about-meta-item:last-child {
+  border-bottom: none;
+}
+
+.page-about .about-meta-label {
+  font-size: 1.0rem;
+  letter-spacing: 0.25em;
+  color: var(--gray);
+  text-transform: uppercase;
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.page-about .about-meta-value {
+  font-size: 1.3rem;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.page-about .about-intro__bio {
+  font-size: 1.4rem;
+  color: var(--gray-light);
+  line-height: 1.9;
+  margin-bottom: 1.6rem;
+}
+
+.page-about .about-intro__bio:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Section ─── */
+.page-about .about-section {
+  margin-bottom: 7rem;
+  opacity: 0;
+  animation: aboutFadeUp 0.8s ease forwards;
+}
+
+.page-about .about-section:nth-of-type(3) { animation-delay: 0.25s; }
+.page-about .about-section:nth-of-type(4) { animation-delay: 0.35s; }
+
+.page-about .about-section__head {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.page-about .about-section__label {
+  font-size: 1.0rem;
+  letter-spacing: 0.4em;
+  color: var(--gray);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.page-about .about-section__line {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+}
+
+/* ─── Philosophy ─── */
+.page-about .about-philosophy__quote {
+  border-left: 1px solid var(--border-accent);
+  padding-left: 2.4rem;
+  margin-bottom: 3rem;
+}
+
+.page-about .about-philosophy__quote p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.page-about .about-philosophy__body p {
+  font-size: 1.4rem;
+  color: var(--gray-light);
+  line-height: 1.9;
+  margin-bottom: 1.6rem;
+}
+
+.page-about .about-philosophy__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Life ─── */
+.page-about .about-life p {
+  font-size: 1.4rem;
+  color: var(--gray-light);
+  line-height: 1.9;
+  margin-bottom: 1.6rem;
+}
+
+.page-about .about-life p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Animation ─── */
+@keyframes aboutFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+  .page-about .about-wrap { padding: 0rem 2rem 8rem; }
+  .page-about .about-intro {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .page-about .about-intro__photo-placeholder {
+    aspect-ratio: 1 / 1;
+  }
+}
